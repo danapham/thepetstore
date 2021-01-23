@@ -6,16 +6,40 @@ namespace ThePetStore.Pets
 {
     public class Turtle
     {
-        //Properties
-        public string Name { get; set; }
+        //Properties - Things are externally consumable
+
+        //readonly property -> can only be set once and in the constructor/instantiation process
+        public string Name { get; }
+        //readonly property, but can only be calculated/derived
+        public string Description => $"{Age} year old {Size}, {Color} turtle";
+
+        //public property with a private setter
+        public int Age { get; private set; }
+
+        //auto-property
         public string Size { get; set; }
-        public int Age { get; set; }
         public string Color { get; set; }
+
+        //field backed property - that's what the auto-property get/sets work
+        string _shellPattern = "squares";
+        public string ShellPattern
+        { 
+            get { return _shellPattern; }
+            set { _shellPattern = value;  }
+        }
+
+        //what properties really are
+        //string get__ShellPattern()
+        //{
+        //    return "";
+        //}
 
         //Fields - internal private things
         private bool _isHungry = true;
 
-        //Constructor
+        //Constructor overloading - this will choose constructor based on its signature
+        public Turtle(string name) : this(name,0)
+        { }
         public Turtle(string name, int age)
         {
             Name = name;
@@ -24,6 +48,13 @@ namespace ThePetStore.Pets
         }
 
         //Method
+        //method signature return type, name, parameters
+        public void Eat()
+        {
+            Eat("pellets");
+        }
+
+        //Method Overloading
         public void Eat(string foodType)
         {
             if (_isHungry)
@@ -50,13 +81,12 @@ namespace ThePetStore.Pets
                 Console.WriteLine($"No occasion...");
             }
 
-            DressUp("fancy bloomer");
-        }
+            if (occasion == "birthday")
+            {
+                Console.WriteLine($"{Name} is now {++Age} years old");
+            }
 
-        //Method Overloading
-        public void Eat()
-        {
-            Eat("pellets");
+            DressUp("fancy bloomer");
         }
 
         private void DressUp(string clothing)

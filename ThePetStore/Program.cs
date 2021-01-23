@@ -7,11 +7,15 @@ namespace ThePetStore
     {
         public static void Main(string[] args)
         {
-            //Turtle turtle1 = new Turtle("Mertle", 72);
-            //turtle1.Eat("lettuce");
-            //turtle1.Eat("lettuce");
-            //turtle1.Eat();
-            //turtle1.ShowTime("bar-mitzvah");
+            var babyTurtle = new Turtle("Simon");
+            Turtle turtle1 = new Turtle("Mertle", 72);
+            Console.WriteLine(turtle1.Description);
+            turtle1.Eat("lettuce");
+            turtle1.Eat("lettuce");
+            turtle1.Eat();
+            turtle1.ShowTime("bar-mitzvah");
+            turtle1.ShowTime("birthday");
+            babyTurtle.ShowTime("birthday");
 
             Scorpion scorpion = new Scorpion("Steven");
             scorpion.Attack();
